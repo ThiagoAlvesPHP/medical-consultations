@@ -18,4 +18,21 @@ class CityController extends Controller
 
         return response()->json($cities->get());
     }
+
+    public function doctors(string $city_id, Request $request)
+    {
+        $city = City::find($city_id);
+
+        if (!$city)
+            return response()->json(['error' => 'Cidade não encontrada!'], 404);
+
+        $doctors = $city->doctors();
+
+        if ($request->has('nome'))
+            $doctors->where('name', 'LIKE', '%' . $request->get('nome') . '%');
+
+        $doctors->orderBy('name');
+
+        return $doctors->get();
+    }
 }
