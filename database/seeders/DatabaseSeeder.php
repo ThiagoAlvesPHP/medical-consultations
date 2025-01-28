@@ -20,5 +20,9 @@ class DatabaseSeeder extends Seeder
         Patient::factory(30)->create();
         Doctor::factory(20)->create();
         Consultation::factory(10)->create();
+
+        $this->call([
+            UserSeeder::class,
+        ]);
     }
 }
