@@ -51,4 +51,31 @@ class DoctorController extends Controller
 
         return response()->json($consultation, 201);
     }
+
+    public function patients(string $doctor_id, Request $request)
+    {
+        $doctor = Doctor::find($doctor_id);
+
+        if (!$doctor)
+            return response()->json(['message' => 'Este médico não foi encontrado.'], 404);
+
+        $consultations = $doctor->consultations();
+
+        if ($request->has('apenas-agendadas'))
+            $consultations->where('date', '>', now());
+
+        if ($request->has('nome'))
+            $consultations->whereHas('patient', function ($query) use ($request) {
+                return $query->where('name', 'LIKE', '%' . $request->get('nome') . '%');
+            });
+
+        return $consultations
+            ->get()
+            ->map(function ($consultation) {
+                $patient = $consultation->patient;
+                $patient->consultation = $consultation->makeHidden(['patient'])->toArray();
+
+                return $patient;
+            });
+    }
 }
