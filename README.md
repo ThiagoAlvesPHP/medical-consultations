@@ -45,7 +45,7 @@ Tecnologias usadas no projeto:
 
       - Parar e remover tudo, incluindo volumes (dados persistentes serão perdidos):
       ```bash
-        ./vendor/bin/sail down --v
+        ./vendor/bin/sail down -v
       ```
     
       - Rode as migrations e seeders
