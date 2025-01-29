@@ -57,6 +57,17 @@ Tecnologias usadas no projeto:
       ```bash
         ./vendor/bin/sail art key:generate
       ```
+
+      - Gere a chave de criptográfia do jwt
+      ```bash
+        ./vendor/bin/sail art jwt:secret
+      ```
+
+     - Observação: verifique se o `AUTH_GUARD` está definido no `.env`
+      ```bash
+        AUTH_GUARD=api
+      ```
+
 Uso:
 - Para acessar o projeto basta [Clicar Aqui](http://localhost/)
 - Para acessar o phpmyadmin basta [Clicar Aqui](http://localhost:8080)

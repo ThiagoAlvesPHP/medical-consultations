@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         City::factory(40)->create();
-        Patient::factory(30)->create();
+        Patient::factory(110)->create();
         Doctor::factory(20)->create();
-        Consultation::factory(10)->create();
+        Consultation::factory(100)->create();
 
         $this->call([
             UserSeeder::class,

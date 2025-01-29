@@ -20,7 +20,7 @@ class DoctorFactory extends Factory
         $faker = fake('pt_BR');
 
         return [
-            'city_id' => City::query()->inRandomOrder()->value('id'),
+            'city_id' => City::query()->inRandomOrder()->value('id') ?? City::factory()->create()->id,
             'name' => $faker->name(),
             'specialty' => $faker->randomElement([
                 'Cardiologia',
